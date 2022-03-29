@@ -15,4 +15,4 @@ while intento < 6 and not gane:
         print('Mmmm ... No.. ese número no es... Seguí intentando.')
         intento += 1
 if not gane:
-    print('\n Perdiste :(\n El número era: {}'.format(numero_aleatorio))
+    print('\n Perdiste :(\n El número era quizás: {}'.format(numero_aleatorio))
