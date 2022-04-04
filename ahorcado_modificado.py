@@ -50,6 +50,12 @@ words = {'Colors':'red orange yellow green blue indigo violet white black brown 
 'Fruits':'apple orange lemon lime pear watermelon grape grapefruit cherry banana cantalope mango strawberry tomato mango'.split(),
 'Animals':'bat bear beaver cat cougar crab deer dog donkey duck eagle fish frog goat leech lion lizard monkey moose mouse otter owl panda python rabbit rat shark sheep skunk squid tiger turkey turtle weasel whale wolf wombat zebra'.split()}
 
+pistas = {"Fruits":["Ten en cuenta que puede ingerirse", "Podría manchar tu ropa", "Debe ingerirse a diario","Pueden combinarse para generar un resultado nuevo"],
+"Shapes":["No es un alimento","Te gusta la trigonometría?", "Forma ángulos"],"Animals":["Ten en cuenta que puede ingerirse", "Podría manchar tu ropa", "Podría morderte"],
+"Colors":["Podría manchar tu ropa", "Pueden combinarse para generar un resultaod nuevo", "Están en el arcoiris"]}
+
+
+
 def getRandomWord(wordDict):
     ''' This function returns a random string from the passed dictionary of lists of strings, and the key also.'''
     
@@ -100,6 +106,19 @@ def playAgain():
     print('Do you want to play again? (yes or no)')
     return input().lower().startswith('y')
 
+def pista (secretSet):
+    if secretSet == "Fruits":
+        wordIndex = random.randint(0, len(pistas["Fruits"]) - 1)
+        print(pistas["Fruits"][wordIndex])
+    elif secretSet == "Colors":
+        wordIndex = random.randint(0, len(pistas["Colors"]) - 1)
+        print(pistas["Colors"][wordIndex])
+    elif secretSet == "Animals":
+        wordIndex = random.randint(0, len(pistas["Animals"]) - 1)
+        print(pistas["Animals"][wordIndex])
+    elif secretSet == "Shapes":
+        wordIndex = random.randint(0, len(pistas["Shapes"]) - 1)
+        print(pistas["Shapes"][wordIndex])  
 
 print('H A N G M A N')
 
@@ -124,7 +143,6 @@ secretWord, secretSet = getRandomWord(words)
 gameIsDone = False
 
 while True:
-    print('The secret word is in the set: ' + secretSet)
     displayBoard(missedLetters, correctLetters, secretWord)
 
     # Let the player type in a letter.
@@ -151,8 +169,8 @@ while True:
             gameIsDone = True
         else:
             restantes = (len(HANGMAN_PICS)-1)-len(missedLetters)
-            print(f"Remember, the secret word belongs to the key {secretSet}  of the dictionary, pay atention or you are done, you have {restantes} tries to go.")    
-
+            print(f"Pay atention or you are done, you have {restantes} tries to go. Here you go, a litle clue...") 
+            pista(secretSet)            
     # Ask the player if they want to play again (but only if the game is done).
     if gameIsDone:
         if playAgain():
